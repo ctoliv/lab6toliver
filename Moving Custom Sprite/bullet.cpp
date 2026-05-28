@@ -65,4 +65,4 @@ int bullet::move_bullet (int arrowX, int arrowY, int width, int length, int heig
 
 } 
 
-
+//Christian Tolvier//

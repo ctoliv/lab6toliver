@@ -27,7 +27,7 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 {
 	for(int i=0;i<4; i++)
 	{
-		arrow_bmp[i]=al_create_bitmap(32,32);   
+		arrow_bmp[i]=al_create_bitmap(64,64);   
 		if(!arrow_bmp[i]) {
 			exit(1);
 			al_destroy_display(display);
@@ -37,23 +37,39 @@ void arrowClass::create_arrow_bitmap(ALLEGRO_DISPLAY *display)
 		al_set_target_bitmap(arrow_bmp[i]);
 		al_clear_to_color(al_map_rgb(0, 0, 0));
 
-		int x = 15;
-		int y = 15;
-		al_draw_filled_rectangle(x-10, y-10, x+10, y+10, al_map_rgb(255, 255, 255));
+		int x = 32;
+		int y = 32;
 
-		switch(i)
+		// Main body
+		al_draw_filled_rectangle(x - 14, y - 14, x + 14, y + 14, al_map_rgb(255, 255, 255));
+
+		// Blue cockpit
+		al_draw_filled_circle(x, y, 8, al_map_rgb(0, 180, 255));
+
+		// Purple side wings
+		al_draw_filled_triangle(x - 14, y - 8, x - 28, y, x - 14, y + 8, al_map_rgb(150, 0, 255));
+		al_draw_filled_triangle(x + 14, y - 8, x + 28, y, x + 14, y + 8, al_map_rgb(150, 0, 255));
+
+		// Yellow engine/detail
+		al_draw_filled_circle(x, y + 16, 5, al_map_rgb(255, 255, 0));
+
+		// Red direction point for each direction
+		switch (i)
 		{
-		case 0: //Up
-			al_draw_filled_triangle(x-10,y-10,x+11,y-10,x,y-15,al_map_rgb(255, 0, 0));
+		case 0: // Up
+			al_draw_filled_triangle(x - 10, y - 10, x + 11, y - 10, x, y - 15, al_map_rgb(255, 0, 0));
 			break;
-		case 1://Right
-			al_draw_filled_triangle(x+11,y-11,x+11,y+11,x+15,y,al_map_rgb(255, 0, 0));
+
+		case 1: // Right
+			al_draw_filled_triangle(x + 11, y - 11, x + 11, y + 11, x + 15, y, al_map_rgb(255, 0, 0));
 			break;
-		case 2://Down
-			al_draw_filled_triangle(x-11,y+11,x+11,y+11,x,y+15,al_map_rgb(255, 0, 0));
+
+		case 2: // Down
+			al_draw_filled_triangle(x - 11, y + 11, x + 11, y + 11, x, y + 15, al_map_rgb(255, 0, 0));
 			break;
-		case 3: //Left
-			al_draw_filled_triangle(x-11,y-11,x-11,y+11,x-15,y,al_map_rgb(255, 0, 0));
+
+		case 3: // Left
+			al_draw_filled_triangle(x - 11, y - 11, x - 11, y + 11, x - 15, y, al_map_rgb(255, 0, 0));
 			break;
 		}
 	}
@@ -63,8 +79,8 @@ void arrowClass::erase_arrow()
 
 	int left = x ;
 	int top = y;
-	int right = x + 32;
-	int bottom =y + 32;
+	int right = x + 64;
+	int bottom = y + 64;
 
 	al_draw_filled_rectangle(left, top, right, bottom, al_map_rgb(0, 0, 0));
 }
@@ -140,9 +156,9 @@ void arrowClass::move_arrow(int width, int height)
 	}
 
 	//keep arrow inside the screen
-	if (x > width-32)
+	if (x > width-64)
 	{
-		x = width-32;
+		x = width-64;
 		speed = 0;
 	}
 	if (x < 0)
@@ -150,9 +166,9 @@ void arrowClass::move_arrow(int width, int height)
 		x = 0;
 		speed = 0;
 	}
-	if (y > height-32)
+	if (y > height-64)
 	{
-		y = height-32;
+		y = height-64;
 		speed = 0;
 	}
 	if (y < 0)
@@ -161,3 +177,4 @@ void arrowClass::move_arrow(int width, int height)
 		speed = 0;
 	}
 }
+//Christian Tolvier//

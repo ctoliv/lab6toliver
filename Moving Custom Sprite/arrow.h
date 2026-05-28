@@ -29,3 +29,5 @@ private:
 	ALLEGRO_BITMAP *arrow_bmp[4];
 
 };
+
+//Christian Tolvier//

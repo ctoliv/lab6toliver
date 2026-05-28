@@ -18,3 +18,4 @@ private:
 	ALLEGRO_BITMAP* bullet_bmp;
 };
 
+//Christian Tolvier//

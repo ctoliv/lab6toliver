@@ -114,13 +114,13 @@ int main(void)
 
 			if (arrow.getSpeed()!=0){
 				arrow.erase_arrow();
-				arrow.move_arrow(width,height);
+				arrow.move_arrow(width,480);
 			}
 			arrow.drawArrow();
 			for(int i=0;i<10;i++)
 			{
 				mybullet[i].erase_bullet();
-				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,height);
+				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),64,64,480);
 			}
 			al_draw_filled_rectangle(0, 480, width, 520, al_map_rgb(60, 60, 60));
 
@@ -141,3 +141,5 @@ int main(void)
 	system("pause");
 	return 0;
 }
+
+//Christian Tolvier//
