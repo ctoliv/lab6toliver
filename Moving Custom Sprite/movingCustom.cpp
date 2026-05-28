@@ -38,6 +38,11 @@ int main(void)
 	al_init_primitives_addon();
 	al_init_font_addon();
 	arrow.create_arrow_bitmap(display);
+	
+	for (int i = 0; i < 10; i++)
+	{
+		mybullet[i].create_bullet_bitmap();
+	}
 
 	ALLEGRO_FONT* font = al_create_builtin_font();
 
