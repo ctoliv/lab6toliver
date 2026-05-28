@@ -117,6 +117,15 @@ int main(void)
 				mybullet[i].erase_bullet();
 				score+=mybullet[i].move_bullet(arrow.getX(),arrow.getY(),32,32,height);
 			}
+			al_draw_filled_rectangle(0, 480, width, 520, al_map_rgb(60, 60, 60));
+
+			// Print countdown timer
+			al_draw_textf(font, al_map_rgb(255, 255, 255), 20, 490, 0,
+				"Time: %d", timeLeft);
+
+			// Print score
+			al_draw_textf(font, al_map_rgb(255, 255, 255), 160, 490, 0,
+				"Score: %d", score);
 		}
 		al_flip_display();
 	}
