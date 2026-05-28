@@ -2,6 +2,8 @@
 #include <allegro5\allegro_primitives.h>
 #include "arrow.h";
 #include "bullet.h"
+#include <allegro5/allegro_font.h>
+
 
 int main(void)
 {
@@ -14,7 +16,7 @@ int main(void)
 
 	//variables
 	int width = 640;
-	int height = 480;
+	int height = 520;
 	bool done = false;
 
 	//allegro variable
@@ -34,8 +36,10 @@ int main(void)
 	//addon init
 	al_install_keyboard();
 	al_init_primitives_addon();
+	al_init_font_addon();
 	arrow.create_arrow_bitmap(display);
 
+	ALLEGRO_FONT* font = al_create_builtin_font();
 
 	al_set_target_bitmap(al_get_backbuffer(display));
 	event_queue = al_create_event_queue();
@@ -46,6 +50,11 @@ int main(void)
 	arrow.drawArrow();
 	al_flip_display();
 	al_start_timer(timer);
+
+	// Countdown timer starts at 30 seconds
+	double startTime = al_get_time();
+	int timeLeft = 30;
+
 	while(!done)
 	{
 		ALLEGRO_EVENT ev;
@@ -54,6 +63,14 @@ int main(void)
 		if(ev.type == ALLEGRO_EVENT_TIMER)
 		{
 			redraw = true;
+			timeLeft = 30 - (int)(al_get_time() - startTime);
+
+			if (timeLeft <= 0)
+			{
+				timeLeft = 0;
+				done = true;
+			}
+
 			for(int i=0;i<10;i++)
 			{
 				if (!mybullet[i].getStatus()) {
@@ -105,6 +122,7 @@ int main(void)
 	}
 	al_destroy_event_queue(event_queue);
 	al_destroy_timer(timer);
+	al_destroy_font(font);
 	al_destroy_display(display);						//destroy our display object
 	system("pause");
 	return 0;
