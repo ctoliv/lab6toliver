@@ -21,7 +21,7 @@ void bullet::create_bullet_bitmap()
 	al_set_target_bitmap(bullet_bmp);
 	al_clear_to_color(al_map_rgb(0, 0, 0));
 
-	// Primitive 1: yellow circle for bullet body
+	// Primitive 1: blue circle for bullet body
 	al_draw_filled_circle(8, 8, 7, al_map_rgb(0, 120, 255));
 
 	// Primitive 2: red rectangle for bullet detail
